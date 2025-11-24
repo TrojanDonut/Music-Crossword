@@ -4,12 +4,12 @@ A musical crossword puzzle generator where players fill in melodic motifs instea
 
 ## 📚 Documentation
 
-- **[UI Implementation Guide](UI_IMPLEMENTATION_GUIDE.md)** - Complete technical guide for building the SvelteKit frontend
-- **[Pitch Mapping Reference](PITCH_MAPPING_REFERENCE.md)** - Explains how notes (C, D, E...) map to grid letters
-- **[Rhythm Guide](RHYTHM_GUIDE.md)** - How rhythm data works and how to use it for audio playback
-- **[Rhythm Implementation Summary](RHYTHM_IMPLEMENTATION_SUMMARY.md)** - What was added and how to use it ⭐ NEW
-- **[Quick Start](QUICKSTART.md)** - Get up and running quickly (if exists)
+**📘 [DOCUMENTATION.md](DOCUMENTATION.md)** - **Complete comprehensive documentation** (all-in-one guide)
+
+Additional resources:
 - **[Project Plan](projektni_plan.md)** - Original project plan (Slovenian)
+- **[UI README](music-crossword-ui/README.md)** - Web application quick reference
+- **[CHANGELOG](music-crossword-ui/CHANGELOG.md)** - Version history
 
 ## 🎯 Project Status
 

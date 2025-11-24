@@ -2,6 +2,8 @@
 
 An interactive web application for solving musical crossword puzzles. Users fill in melodic sequences by recognizing famous melodies instead of answering text clues.
 
+> **📘 For complete documentation, see [../DOCUMENTATION.md](../DOCUMENTATION.md)**
+
 ## Features
 
 - 🎵 **Interactive Crossword Grid** - Click cells and fill in musical notes
@@ -244,28 +246,12 @@ node crossword_generator.js
 - Clear `node_modules` and reinstall: `rm -rf node_modules && npm install`
 - Check for TypeScript errors: `npm run check`
 
-## Future Enhancements
+## Documentation
 
-- [x] ~~Rhythm support~~ ✅ **COMPLETED**
-- [x] ~~Adjustable tempo~~ ✅ **COMPLETED**
-- [ ] User accounts and authentication
-- [ ] Daily puzzle mode
-- [ ] Leaderboards (fastest solve times)
-- [ ] Multiple instrument sounds (piano, strings, etc.)
-- [ ] Difficulty-based filtering
-- [ ] Visual rhythm display (musical notation)
-- [ ] Social sharing
-- [ ] Offline PWA support
-- [ ] Dark mode
-- [ ] Multiplayer mode
-
-## Contributing
-
-This project is part of a DAP course at FRI, University of Ljubljana.
-
-## License
-
-MIT License (to be added)
+For detailed information, see:
+- **[Complete Documentation](../DOCUMENTATION.md)** - Comprehensive guide
+- **[Changelog](CHANGELOG.md)** - Version history
+- **[Project Plan](../projektni_plan.md)** - Original plan (Slovenian)
 
 ---
 
