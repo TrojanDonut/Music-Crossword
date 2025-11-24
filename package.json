@@ -1,0 +1,23 @@
+{
+  "name": "music-crossword",
+  "version": "0.1.0",
+  "description": "Musical crossword puzzle generator",
+  "type": "module",
+  "scripts": {
+    "generate": "node crossword_generator.js"
+  },
+  "dependencies": {
+    "crossword-layout-generator": "^0.1.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "crossword",
+    "music",
+    "puzzle"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+

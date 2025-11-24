@@ -1,0 +1,16 @@
+# Python dependencies for music crossword project
+# Install with: pip install -r requirements.txt
+
+# No external dependencies for core functionality!
+# Uses only Python standard library:
+# - sqlite3 (built-in)
+# - re (built-in)
+# - pathlib (built-in)
+# - hashlib (built-in)
+# - json (built-in)
+# - dataclasses (built-in, Python 3.7+)
+
+# Optional for future development:
+# music21>=8.0.0  # For advanced MIDI/MusicXML parsing
+# mido>=1.2.0     # For MIDI file handling
+

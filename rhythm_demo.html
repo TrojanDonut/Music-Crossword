@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhythm Demo - Music Crossword</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        .demo-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        .demo-section h2 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .comparison-box {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .bad { border-left: 4px solid #ff6b6b; }
+        .good { border-left: 4px solid #51cf66; }
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .notes-display {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        .tempo-control {
+            margin: 20px 0;
+        }
+        .tempo-control input {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .tempo-value {
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Rhythm Demo</h1>
+        <p class="subtitle">Hear the difference rhythm makes!</p>
+
+        <div class="demo-section">
+            <h2>🎼 Beethoven's 5th Symphony</h2>
+            <div class="notes-display">
+                Pitches: G G G Eb | F F F D<br>
+                Rhythm: 8 8 8 2  | 8 8 8 2<br>
+                <small>(short-short-short-LONG!)</small>
+            </div>
+            
+            <div class="comparison">
+                <div class="comparison-box bad">
+                    <h3>❌ Without Rhythm</h3>
+                    <p>All notes equal duration</p>
+                    <button onclick="playBeethoven(false)">Play (Robotic)</button>
+                </div>
+                <div class="comparison-box good">
+                    <h3>✅ With Rhythm</h3>
+                    <p>Natural "fate knocking" rhythm</p>
+                    <button onclick="playBeethoven(true)">Play (Musical!)</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🎮 Super Mario Bros Theme</h2>
+            <div class="notes-display">
+                Pitches: E E E C E G G<br>
+                Rhythm: 8 8 8 16 16 4 2<br>
+                <small>(bouncy game energy!)</small>
+            </div>
+            
+            <div class="comparison">
+                <div class="comparison-box bad">
+                    <h3>❌ Without Rhythm</h3>
+                    <p>Loses the bounce!</p>
+                    <button onclick="playMario(false)">Play (Boring)</button>
+                </div>
+                <div class="comparison-box good">
+                    <h3>✅ With Rhythm</h3>
+                    <p>Classic bouncy Mario feel</p>
+                    <button onclick="playMario(true)">Play (Perfect!)</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🦈 Jaws Theme</h2>
+            <div class="notes-display">
+                Pitches: E F E F E F E F<br>
+                Rhythm: 8 8 8 8 8 8 8 8<br>
+                <small>(accelerating danger!)</small>
+            </div>
+            
+            <button onclick="playJaws()">🔊 Play Jaws (accelerating)</button>
+        </div>
+
+        <div class="tempo-control">
+            <h3>🎚️ Tempo Control</h3>
+            <input type="range" id="tempo" min="60" max="200" value="120" oninput="updateTempo()">
+            <div class="tempo-value">
+                <span id="tempoValue">120</span> BPM
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let currentTempo = 120;
+
+        function updateTempo() {
+            currentTempo = parseInt(document.getElementById('tempo').value);
+            document.getElementById('tempoValue').textContent = currentTempo;
+        }
+
+        function pitchToFrequency(pitchClass, octave = 4) {
+            const pitchMap = {
+                'C': 0, 'C#': 1, 'Db': 1, 'D': 2, 'D#': 3, 'Eb': 3,
+                'E': 4, 'F': 5, 'F#': 6, 'Gb': 6, 'G': 7, 'G#': 8,
+                'Ab': 8, 'A': 9, 'A#': 10, 'Bb': 10, 'B': 11
+            };
+            const semitones = pitchMap[pitchClass];
+            const midiNote = (octave + 1) * 12 + semitones;
+            return 440 * Math.pow(2, (midiNote - 69) / 12);
+        }
+
+        function rhythmToDuration(rhythm, tempo) {
+            const beatsPerSecond = tempo / 60;
+            let baseValue, isDotted = false;
+            if (rhythm.endsWith('.')) {
+                baseValue = parseFloat(rhythm.slice(0, -1));
+                isDotted = true;
+            } else {
+                baseValue = parseFloat(rhythm);
+            }
+            let beats = 4 / baseValue;
+            if (isDotted) beats *= 1.5;
+            return beats / beatsPerSecond;
+        }
+
+        function playMelody(pitches, rhythms, tempo, useRhythm = true) {
+            let startTime = audioContext.currentTime;
+            
+            for (let i = 0; i < pitches.length; i++) {
+                const frequency = pitchToFrequency(pitches[i]);
+                const duration = useRhythm 
+                    ? rhythmToDuration(rhythms[i], tempo)
+                    : 0.3;  // Fixed duration without rhythm
+                
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.frequency.value = frequency;
+                oscillator.type = 'triangle';
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                // ADSR envelope
+                gainNode.gain.setValueAtTime(0, startTime);
+                gainNode.gain.linearRampToValueAtTime(0.3, startTime + 0.01);
+                gainNode.gain.linearRampToValueAtTime(0.2, startTime + duration * 0.7);
+                gainNode.gain.linearRampToValueAtTime(0, startTime + duration);
+                
+                oscillator.start(startTime);
+                oscillator.stop(startTime + duration);
+                
+                startTime += duration;
+            }
+        }
+
+        function playBeethoven(withRhythm) {
+            const pitches = ['G', 'G', 'G', 'Eb', 'F', 'F', 'F', 'D'];
+            const rhythms = ['8', '8', '8', '2', '8', '8', '8', '2'];
+            playMelody(pitches, rhythms, currentTempo, withRhythm);
+        }
+
+        function playMario(withRhythm) {
+            const pitches = ['E', 'E', 'E', 'C', 'E', 'G', 'G'];
+            const rhythms = ['8', '8', '8', '16', '16', '4', '2'];
+            playMelody(pitches, rhythms, currentTempo, withRhythm);
+        }
+
+        function playJaws() {
+            const pitches = ['E', 'F', 'E', 'F', 'E', 'F', 'E', 'F'];
+            // Accelerating rhythm
+            const rhythms = ['4', '4', '8', '8', '8', '8', '16', '16'];
+            playMelody(pitches, rhythms, currentTempo, true);
+        }
+
+        // Resume audio context on first user interaction (Chrome requirement)
+        document.addEventListener('click', () => {
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
+
