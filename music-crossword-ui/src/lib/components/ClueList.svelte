@@ -4,7 +4,8 @@
   import { validation } from '$lib/stores/userInput';
   import type { Clue } from '$lib/types/puzzle';
   
-  export let clues: Clue[];
+  export let clues: Clue[]; // Filtered clues (across or down)
+  export let allClues: Clue[]; // Full clues array for global index calculation
   export let title: string;
   
   function handleClueClick(index: number) {
@@ -18,6 +19,23 @@
   function isClueActive(index: number): boolean {
     return $activeClueIndex === index;
   }
+  
+  // Find the global index of a clue in the full clues array
+  // Use motif_id as the primary identifier since it's unique
+  function getGlobalIndex(clue: Clue): number {
+    const index = allClues.findIndex(c => c.motif_id === clue.motif_id);
+    if (index === -1) {
+      console.warn('Could not find clue by motif_id, using fallback:', clue);
+      // Fallback to position + orientation if motif_id match fails
+      const fallbackIndex = allClues.findIndex(c => 
+        c.position?.x === clue.position?.x && 
+        c.position?.y === clue.position?.y && 
+        c.orientation === clue.orientation
+      );
+      return fallbackIndex;
+    }
+    return index;
+  }
 </script>
 
 <div class="clue-list">
@@ -25,7 +43,7 @@
   
   <div class="clues">
     {#each clues as clue, index (index)}
-      {@const globalIndex = clues.indexOf(clue)}
+      {@const globalIndex = getGlobalIndex(clue)}
       <div
         class="clue-item {isClueActive(globalIndex) ? 'active' : ''} {isClueCompleted(globalIndex) ? 'completed' : ''}"
         on:click={() => handleClueClick(globalIndex)}

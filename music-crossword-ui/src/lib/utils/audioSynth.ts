@@ -18,8 +18,8 @@ export function getAudioContext(): AudioContext {
 
 /**
  * Convert pitch class to frequency (A4 = 440Hz)
- * @param pitch - Note name (C, C#, D, etc.)
- * @param octave - Octave number (default 4)
+ * @param pitch - Note name (C, C#, D, etc.) or with octave (C4, F#4, etc.)
+ * @param octave - Octave number (default 4, ignored if pitch includes octave)
  */
 function pitchToFrequency(pitch: string, octave: number = 4): number {
   const pitchMap: Record<string, number> = {
@@ -33,8 +33,18 @@ function pitchToFrequency(pitch: string, octave: number = 4): number {
   };
   
   // Normalize sharp symbol
-  const normalizedPitch = pitch.replace('♯', '#');
-  const semitones = (pitchMap[normalizedPitch] ?? 0) + (octave - 4) * 12 - 9; // A4 as reference
+  let normalizedPitch = pitch.replace('♯', '#');
+  let actualOctave = octave;
+  
+  // Check if pitch includes octave (e.g., "C4", "F#4", "Bb5")
+  // Match pattern: note name (with optional #/b) followed by digits
+  const octaveMatch = normalizedPitch.match(/^([A-G][#b]?)(\d+)$/);
+  if (octaveMatch) {
+    normalizedPitch = octaveMatch[1]; // Extract pitch class
+    actualOctave = parseInt(octaveMatch[2], 10); // Extract octave
+  }
+  
+  const semitones = (pitchMap[normalizedPitch] ?? 0) + (actualOctave - 4) * 12 - 9; // A4 as reference
   return 440 * Math.pow(2, semitones / 12);
 }
 

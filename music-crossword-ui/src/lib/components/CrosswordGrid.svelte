@@ -11,7 +11,20 @@
   
   // Get active cells for highlighting
   $: activeCells = $activeClueIndex !== null && $clues[$activeClueIndex]
-    ? new Set(getClueCells($clues[$activeClueIndex]).map(([r, c]) => `${r},${c}`))
+    ? (() => {
+        const clue = $clues[$activeClueIndex];
+        console.log('=== HIGHLIGHTING DEBUG ===');
+        console.log('Clue:', clue.clue);
+        console.log('Answer:', clue.answer, 'Length:', clue.answer.length);
+        console.log('Position from API:', clue.position);
+        console.log('Original startx/starty:', clue.startx, '/', clue.starty);
+        console.log('Orientation:', clue.orientation);
+        const cells = getClueCells(clue);
+        console.log('Calculated cells (row,col):', cells);
+        console.log('First cell: row', cells[0][0], 'col', cells[0][1]);
+        console.log('Last cell: row', cells[cells.length-1][0], 'col', cells[cells.length-1][1]);
+        return new Set(cells.map(([r, c]) => `${r},${c}`));
+      })()
     : new Set();
   
   function handleCellClick(row: number, col: number) {

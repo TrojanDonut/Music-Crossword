@@ -31,13 +31,29 @@ export const GET: RequestHandler = async ({ params }) => {
     const motifs = getMotifs(puzzle.motif_ids);
     const motifMap = new Map(motifs.map(m => [m.id, m]));
     
-    // Enrich clues with motif data
+    // Enrich clues with motif data and normalize position
     const enrichedLayout = {
       ...puzzle.layout,
-      result: puzzle.layout.result.map(clue => ({
-        ...clue,
-        motif: motifMap.get(clue.motif_id) || null
-      }))
+      result: puzzle.layout.result.map(clue => {
+        // Normalize position: the crossword generator uses startx/starty with 1-based indexing
+        // We need to convert to 0-based indexing for the grid array
+        let position;
+        if (clue.position && typeof clue.position === 'object' && 'x' in clue.position && 'y' in clue.position) {
+          position = clue.position;
+        } else {
+          // Convert from 1-based to 0-based indexing
+          position = { 
+            x: (clue.startx ?? 1) - 1, 
+            y: (clue.starty ?? 1) - 1 
+          };
+        }
+        
+        return {
+          ...clue,
+          position,
+          motif: motifMap.get(clue.motif_id) || null
+        };
+      })
     };
     
     return json({

@@ -10,6 +10,14 @@
 # - json (built-in)
 # - dataclasses (built-in, Python 3.7+)
 
+# Leitmotifs integration (optional - only if you want to extract motifs yourself)
+# Note: The import script (import_leitmotifs_datasets.py) doesn't need these
+# It just imports pre-extracted datasets from the repository
+# leitmotif>=0.1.0  # For discovering recurring patterns in music (not needed for import)
+# numpy>=1.20.0     # Required by leitmotif (not needed for import)
+# scipy>=1.7.0      # Required by leitmotif (not needed for import)
+# mido>=1.2.0       # For MIDI file handling (not needed for import)
+
 # Optional for future development:
 # music21>=8.0.0  # For advanced MIDI/MusicXML parsing
 # mido>=1.2.0     # For MIDI file handling

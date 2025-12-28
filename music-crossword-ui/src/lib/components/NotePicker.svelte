@@ -43,21 +43,63 @@
       ([r, c]) => r === $activeCellPosition?.row && c === $activeCellPosition?.col
     );
     
-    if (currentIndex !== -1 && currentIndex < cells.length - 1) {
-      const [nextRow, nextCol] = cells[currentIndex + 1];
+    if (currentIndex === -1) return;
+    
+    // Find next empty cell
+    for (let i = currentIndex + 1; i < cells.length; i++) {
+      const [nextRow, nextCol] = cells[i];
+      const currentValue = $userInput[nextRow]?.[nextCol];
+      if (currentValue === null || currentValue === '') {
+        activeCellPosition.set({ row: nextRow, col: nextCol });
+        return;
+      }
+    }
+    
+    // If no empty cell found, move to the last cell
+    if (currentIndex < cells.length - 1) {
+      const [nextRow, nextCol] = cells[cells.length - 1];
       activeCellPosition.set({ row: nextRow, col: nextCol });
     }
   }
   
-  // Clear current cell
+  // Move to the previous cell in the active clue
+  function moveToPreviousCell() {
+    if ($activeClueIndex === null || !$clues[$activeClueIndex]) return;
+    
+    const cells = getClueCells($clues[$activeClueIndex]);
+    const currentIndex = cells.findIndex(
+      ([r, c]) => r === $activeCellPosition?.row && c === $activeCellPosition?.col
+    );
+    
+    if (currentIndex === -1) return;
+    
+    // If current cell is empty, move to previous
+    const currentValue = $userInput[$activeCellPosition.row]?.[$activeCellPosition.col];
+    if (currentValue === null || currentValue === '') {
+      if (currentIndex > 0) {
+        const [prevRow, prevCol] = cells[currentIndex - 1];
+        activeCellPosition.set({ row: prevRow, col: prevCol });
+      }
+    } else {
+      // If current cell has value, just clear it and stay
+      // (already handled by handleBackspace)
+    }
+  }
+  
+  // Clear current cell and move to previous
   function handleBackspace() {
     if ($activeCellPosition) {
       const { row, col } = $activeCellPosition;
+      const currentValue = $userInput[row]?.[col];
+      
       userInput.update(grid => {
         const newGrid = grid.map(r => [...r]);
         newGrid[row][col] = null;
         return newGrid;
       });
+      
+      // Move to previous cell after clearing
+      moveToPreviousCell();
     }
   }
   

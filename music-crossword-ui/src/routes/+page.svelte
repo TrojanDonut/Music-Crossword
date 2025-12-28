@@ -58,6 +58,11 @@
       <p class="hero-description">
         Each "word" is a melody. Listen, recognize, and fill in the notes!
       </p>
+      <div class="hero-actions">
+        <a href="/add-melody" class="hero-button">
+          ✏️ Add/Edit Songs
+        </a>
+      </div>
     </div>
   </header>
   
@@ -184,7 +189,35 @@
   .hero-description {
     font-size: 1.125rem;
     opacity: 0.9;
-    margin: 0;
+    margin: 0 0 2rem 0;
+  }
+  
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .hero-button {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  .hero-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
   
   .main-content {

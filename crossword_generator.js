@@ -120,6 +120,9 @@ function motifsToEntries(motifs) {
  * Alternative: Use full pitch names and adjust layout generator
  */
 function normalizePitch(pitch) {
+  // Extract pitch class from note with octave (e.g., "C4" -> "C", "D#5" -> "D#")
+  const pitchClass = pitch.replace(/\d+$/, ''); // Remove trailing digits
+  
   const pitchMap = {
     'C': 'C',
     'C#': 'D',
@@ -140,7 +143,7 @@ function normalizePitch(pitch) {
     'B': 'N'
   };
   
-  return pitchMap[pitch] || pitch[0].toUpperCase();
+  return pitchMap[pitchClass] || pitchClass[0].toUpperCase();
 }
 
 /**

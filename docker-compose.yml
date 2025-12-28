@@ -1,0 +1,18 @@
+services:
+  music-crossword-ui:
+    build:
+      context: ./music-crossword-ui
+      dockerfile: Dockerfile
+    container_name: music-crossword-ui
+    ports:
+      - "${PORT:-4173}:4173"
+    volumes:
+      # Mount the database so it's accessible
+      - ./music_crossword.db:/app/music_crossword.db:ro
+      # Mount source for development (optional, comment out for production)
+      # - ./music-crossword-ui/src:/app/src
+    environment:
+      - DATABASE_PATH=/app/music_crossword.db
+      - NODE_ENV=production
+    restart: unless-stopped
+

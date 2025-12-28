@@ -7,26 +7,57 @@
   import ClueList from '$lib/components/ClueList.svelte';
   import ProgressIndicator from '$lib/components/ProgressIndicator.svelte';
   import AudioPlayer from '$lib/components/AudioPlayer.svelte';
-  import { puzzleStore, loadPuzzle, acrossClues, downClues } from '$lib/stores/puzzle';
+  import { puzzleStore, loadPuzzle, acrossClues, downClues, clues } from '$lib/stores/puzzle';
   import { userInput, initializeGrid, clearGrid, saveProgress, loadProgress, activeClueIndex } from '$lib/stores/userInput';
   
-  $: puzzleId = parseInt($page.params.id || '0');
+  let puzzleId = $derived(parseInt($page.params.id || '0'));
   
   let showHints = false;
   
-  onMount(async () => {
-    await loadPuzzle(puzzleId);
-    
-    if ($puzzleStore.puzzle) {
+  let gridInitialized = false;
+  
+  async function initializePuzzleGrid() {
+    if ($puzzleStore.puzzle && !gridInitialized) {
+      gridInitialized = true;
+      const id = parseInt($page.params.id || '0');
       const { rows, cols } = $puzzleStore.puzzle.layout;
+      const clues = $puzzleStore.puzzle.layout.result;
+      
+      // Debug: check if clues have motif data
+      console.log('Initializing grid with clues:', clues.length);
+      const cluesWithMotifs = clues.filter(c => c.motif?.pitch_sequence);
+      console.log('Clues with motif data:', cluesWithMotifs.length);
+      if (cluesWithMotifs.length > 0) {
+        console.log('Sample clue with motif:', {
+          clue: cluesWithMotifs[0].clue,
+          pitch_sequence: cluesWithMotifs[0].motif?.pitch_sequence,
+          position: cluesWithMotifs[0].position
+        });
+      }
       
       // Try to load saved progress
-      const savedProgress = loadProgress(puzzleId);
-      if (savedProgress) {
-        userInput.set(savedProgress);
+      const savedProgress = loadProgress(id);
+      if (savedProgress && savedProgress.length === rows && savedProgress[0]?.length === cols) {
+        // Ensure first notes are populated even in saved progress
+        const { ensureFirstNotes } = await import('$lib/stores/userInput');
+        const gridWithFirstNotes = ensureFirstNotes(savedProgress, clues, rows, cols);
+        userInput.set(gridWithFirstNotes);
       } else {
-        initializeGrid(rows, cols);
+        initializeGrid(rows, cols, clues);
       }
+    }
+  }
+  
+  onMount(async () => {
+    const id = parseInt($page.params.id || '0');
+    await loadPuzzle(id);
+    await initializePuzzleGrid();
+  });
+  
+  // Effect to initialize when puzzle loads
+  $effect(() => {
+    if ($puzzleStore.puzzle) {
+      initializePuzzleGrid();
     }
   });
   
@@ -47,9 +78,9 @@
     goto('/');
   }
   
-  $: currentClue = $activeClueIndex !== null && $puzzleStore.puzzle
+  let currentClue = $derived($activeClueIndex !== null && $puzzleStore.puzzle
     ? $puzzleStore.puzzle.layout.result[$activeClueIndex]
-    : null;
+    : null);
 </script>
 
 <svelte:head>
@@ -87,6 +118,10 @@
     
     <div class="puzzle-content">
       <div class="grid-section">
+        <div class="input-section">
+          <NotePicker />
+        </div>
+        
         <CrosswordGrid />
         
         {#if currentClue}
@@ -108,16 +143,12 @@
             {/if}
           </div>
         {/if}
-        
-        <div class="input-section">
-          <NotePicker />
-        </div>
       </div>
       
       <div class="clues-section">
         <div class="clues-container">
-          <ClueList clues={$acrossClues} title="Across" />
-          <ClueList clues={$downClues} title="Down" />
+          <ClueList clues={$acrossClues} allClues={$clues} title="Across" />
+          <ClueList clues={$downClues} allClues={$clues} title="Down" />
         </div>
       </div>
     </div>
@@ -280,8 +311,7 @@
   }
   
   .input-section {
-    position: sticky;
-    top: 1rem;
+    margin-bottom: 1.5rem;
   }
   
   .clues-section {

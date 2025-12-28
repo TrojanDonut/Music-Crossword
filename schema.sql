@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS motifs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     
     -- Core musical data
-    pitch_sequence TEXT NOT NULL,          -- Space-separated pitch classes: "C D E F#" or "0 2 4 6" (12-tone indices)
+    pitch_sequence TEXT NOT NULL,          -- Space-separated pitches with octaves: "C4 D4 E4 F#4" (2 octaves: C4-C5)
     rhythm_sequence TEXT,                   -- Space-separated durations (Kern notation): "4 4 8 8 2" (quarter, quarter, eighth, eighth, half)
     interval_profile TEXT,                  -- Derived interval vector for fast crossing validation: "+2 +2 +2 -1"
     length INTEGER NOT NULL,                -- Number of notes in the sequence

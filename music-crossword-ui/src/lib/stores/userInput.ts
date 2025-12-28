@@ -3,20 +3,80 @@
  */
 
 import { writable, derived, get } from 'svelte/store';
-import type { GridState, ValidationState } from '$lib/types/puzzle';
+import type { GridState, ValidationState, Clue } from '$lib/types/puzzle';
 import { puzzleStore } from './puzzle';
 import { validateGrid, getCompletionPercentage } from '$lib/utils/validation';
+import { noteToLetter, parsePitchSequence } from '$lib/utils/pitchMapping';
 
 export const userInput = writable<GridState>([]);
 export const activeClueIndex = writable<number | null>(null);
 export const activeCellPosition = writable<{ row: number; col: number } | null>(null);
+export const firstNotePositions = writable<Set<string>>(new Set()); // Track first note positions as "row,col"
 
 /**
- * Initialize an empty grid based on puzzle dimensions
+ * Extract pitch class from a note (e.g., "C4" -> "C", "F#5" -> "F#")
  */
-export function initializeGrid(rows: number, cols: number) {
+function extractPitchClass(note: string): string {
+  const match = note.match(/^([A-G][#b]?)/);
+  return match ? match[1] : note;
+}
+
+/**
+ * Get the first note from a pitch sequence
+ */
+function getFirstNote(pitchSequence: string): string | null {
+  if (!pitchSequence) return null;
+  const notes = parsePitchSequence(pitchSequence);
+  if (notes.length === 0) return null;
+  return extractPitchClass(notes[0]);
+}
+
+/**
+ * Ensure first notes are populated in the grid
+ */
+export function ensureFirstNotes(grid: GridState, clues: Clue[], rows: number, cols: number): GridState {
+  const newGrid = grid.map(r => [...r]);
+  const firstNoteSet = new Set<string>();
+  
+  clues.forEach((clue) => {
+    if (clue.motif?.pitch_sequence) {
+      const firstNote = getFirstNote(clue.motif.pitch_sequence);
+      if (firstNote) {
+        const gridLetter = noteToLetter(firstNote);
+        const { x, y } = clue.position;
+        // Make sure we're within bounds and cell exists
+        // Always set first note, even if cell already has a value (overwrite)
+        if (y < rows && x < cols && newGrid[y]) {
+          newGrid[y][x] = gridLetter;
+          firstNoteSet.add(`${y},${x}`);
+          console.log(`Placed first note ${firstNote} (${gridLetter}) at position (${x}, ${y}) for clue: ${clue.clue}`);
+        }
+      }
+    } else {
+      console.log(`Clue "${clue.clue}" has no motif data`);
+    }
+  });
+  
+  // Update the first note positions store
+  firstNotePositions.set(firstNoteSet);
+  
+  return newGrid;
+}
+
+/**
+ * Initialize a grid based on puzzle dimensions
+ * Optionally pre-populates the first note of each clue
+ */
+export function initializeGrid(rows: number, cols: number, clues?: Clue[]) {
   const grid: GridState = Array(rows).fill(null).map(() => Array(cols).fill(null));
-  userInput.set(grid);
+  
+  // Pre-populate first note of each clue if clues are provided
+  if (clues && clues.length > 0) {
+    const gridWithFirstNotes = ensureFirstNotes(grid, clues, rows, cols);
+    userInput.set(gridWithFirstNotes);
+  } else {
+    userInput.set(grid);
+  }
 }
 
 /**
@@ -38,12 +98,12 @@ export function clearCell(row: number, col: number) {
 }
 
 /**
- * Clear the entire grid
+ * Clear the entire grid (but keep first notes)
  */
 export function clearGrid() {
   const puzzle = get(puzzleStore).puzzle;
   if (puzzle) {
-    initializeGrid(puzzle.layout.rows, puzzle.layout.cols);
+    initializeGrid(puzzle.layout.rows, puzzle.layout.cols, puzzle.layout.result);
   }
 }
 

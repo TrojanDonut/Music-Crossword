@@ -22,6 +22,16 @@ package-lock.json
 
 # Data sources (too large for git)
 essen-folksong-collection/
+MTD/
+
+# Generated outputs
+generated_crosswords/
+musical_themes_database.json
+musical_themes_database.csv
+*.txt
+
+# Documentation and non-essential files
+nonessential/
 
 # IDE
 .vscode/
