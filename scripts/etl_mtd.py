@@ -12,8 +12,8 @@ from typing import List, Optional, Set
 from dataclasses import dataclass
 from mtd_parser import MTDParser, MTDTheme
 
-DB_PATH = Path(__file__).parent / "music_crossword.db"
-MTD_ROOT = Path(__file__).parent / "MTD"
+DB_PATH = Path(__file__).parent.parent / "music_crossword.db"
+MTD_ROOT = Path(__file__).parent.parent / "nonessential/data/MTD"
 
 # Most recognizable composers (for filtering)
 RECOGNIZABLE_COMPOSERS = {

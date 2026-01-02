@@ -10,8 +10,8 @@ import hashlib
 import re
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent / "music_crossword.db"
-JSON_PATH = Path(__file__).parent / "musical_themes_database.json"
+DB_PATH = Path(__file__).parent.parent / "music_crossword.db"
+JSON_PATH = Path(__file__).parent.parent / "nonessential/data/musical_themes_database.json"
 
 # Conversion table: duration fractions to Kern notation
 DURATION_TO_KERN = {

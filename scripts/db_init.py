@@ -8,8 +8,8 @@ import sqlite3
 import sys
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent / "music_crossword.db"
-SCHEMA_PATH = Path(__file__).parent / "schema.sql"
+DB_PATH = Path(__file__).parent.parent / "music_crossword.db"
+SCHEMA_PATH = Path(__file__).parent.parent / "schema.sql"
 
 def init_database():
     """Create database and execute schema."""

@@ -9,8 +9,8 @@ import json
 import hashlib
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent / "music_crossword.db"
-THEMES_PATH = Path(__file__).parent / "curated_themes.json"
+DB_PATH = Path(__file__).parent.parent / "music_crossword.db"
+THEMES_PATH = Path(__file__).parent.parent / "nonessential/data/curated_themes.json"
 
 def import_curated_themes():
     """Import curated themes from JSON file."""
