@@ -54,7 +54,6 @@ class MTDTheme:
         rhythms = []
         for note in self.notes:
             # Approximate conversion based on typical tempo
-            # This is a simplification - you may want more sophisticated conversion
             if note.duration >= 0.9:
                 rhythms.append("2")  # Half note
             elif note.duration >= 0.4:

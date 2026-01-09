@@ -32,6 +32,16 @@ musical_themes_database.csv
 
 # Documentation and non-essential files
 nonessential/
+# But allow nonessential/data/ (except audio)
+!nonessential/
+!nonessential/data/
+!nonessential/data/**
+# Re-exclude audio folder from MTD
+nonessential/data/MTD/data_AUDIO/
+nonessential/data/MTD/data_AUDIO/**
+# Exclude docs and reports
+nonessential/docs/
+nonessential/reports/
 
 # IDE
 .vscode/
