@@ -275,7 +275,7 @@ async function saveCrossword(crossword) {
  */
 async function main() {
   try {
-    const crossword = await   ({
+    const crossword = await generateCrossword({
       numWords: 10,
       minLength: 5,
       maxLength: 10,
