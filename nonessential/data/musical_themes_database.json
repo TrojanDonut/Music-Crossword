@@ -1,0 +1,360 @@
+{
+  "database": "Popular Musical Themes for Music Crossword",
+  "format": "JSON",
+  "notes_format": "Scientific pitch notation (e.g., C4 = middle C)",
+  "durations_format": "Beat fractions (0.25 = quarter note, 0.5 = half note, 1 = whole note)",
+  "tempo_format": "BPM (beats per minute)",
+  "themes": [
+    {
+      "id": 1,
+      "name": "Happy Birthday",
+      "notes": ["C4", "C4", "D4", "C4", "F4", "E4", "C4", "C4", "D4", "C4", "G4", "F4"],
+      "durations": [0.25, 0.25, 0.5, 0.5, 0.5, 1, 0.25, 0.25, 0.5, 0.5, 0.5, 1],
+      "tempo": 120
+    },
+    {
+      "id": 2,
+      "name": "Jingle Bells (Chorus)",
+      "notes": ["E4", "E4", "E4", "E4", "E4", "E4", "E4", "G4", "C4", "D4", "E4"],
+      "durations": [0.5, 0.5, 1, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 2],
+      "tempo": 140
+    },
+    {
+      "id": 3,
+      "name": "Twinkle Twinkle Little Star",
+      "notes": ["C4", "C4", "G4", "G4", "A4", "A4", "G4", "F4", "F4", "E4", "E4", "D4", "D4", "C4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 120
+    },
+    {
+      "id": 4,
+      "name": "Star Wars Theme",
+      "notes": ["G3", "G3", "G3", "C4", "G4", "F4", "E4", "D4", "C5", "G4", "F4", "E4", "D4", "C5", "G4"],
+      "durations": [0.33, 0.33, 0.33, 0.75, 0.75, 0.25, 0.25, 0.25, 1, 0.5, 0.25, 0.25, 0.25, 1, 0.5],
+      "tempo": 108
+    },
+    {
+      "id": 5,
+      "name": "Für Elise (Opening)",
+      "notes": ["E5", "D#5", "E5", "D#5", "E5", "B4", "D5", "C5", "A4"],
+      "durations": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5],
+      "tempo": 120
+    },
+    {
+      "id": 6,
+      "name": "Ode to Joy",
+      "notes": ["E4", "E4", "F4", "G4", "G4", "F4", "E4", "D4", "C4", "C4", "D4", "E4", "E4", "D4", "D4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.75, 0.25, 1],
+      "tempo": 120
+    },
+    {
+      "id": 7,
+      "name": "Super Mario Bros Theme",
+      "notes": ["E5", "E5", "E5", "C5", "E5", "G5", "G4"],
+      "durations": [0.25, 0.25, 0.5, 0.25, 0.5, 1, 1],
+      "tempo": 180
+    },
+    {
+      "id": 8,
+      "name": "Pink Panther Theme",
+      "notes": ["D#4", "E4", "F#4", "G4", "D#4", "E4", "F#4", "G4", "C4", "D4", "D#4", "E4"],
+      "durations": [0.5, 0.25, 2, 0.5, 0.5, 0.25, 2, 0.5, 0.5, 0.25, 0.5, 2],
+      "tempo": 120
+    },
+    {
+      "id": 9,
+      "name": "Imperial March (Star Wars)",
+      "notes": ["G3", "G3", "G3", "D#3", "A#3", "G3", "D#3", "A#3", "G3"],
+      "durations": [0.5, 0.5, 0.5, 0.33, 0.17, 0.5, 0.33, 0.17, 1],
+      "tempo": 100
+    },
+    {
+      "id": 10,
+      "name": "Nokia Tune",
+      "notes": ["E5", "D5", "F#4", "G#4", "C#5", "B4", "D4", "E4", "B4", "A4", "C#4", "E4", "A4"],
+      "durations": [0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25, 0.5, 0.5, 1],
+      "tempo": 180
+    },
+    {
+      "id": 11,
+      "name": "Beethoven's 5th Symphony",
+      "notes": ["G4", "G4", "G4", "D#4", "F4", "F4", "F4", "D4"],
+      "durations": [0.25, 0.25, 0.25, 1.5, 0.25, 0.25, 0.25, 1.5],
+      "tempo": 108
+    },
+    {
+      "id": 12,
+      "name": "We Will Rock You",
+      "notes": ["A4", "G4", "A4", "A4", "G4", "A4", "A4", "G4", "A4"],
+      "durations": [0.5, 0.5, 1, 0.5, 0.5, 1, 0.5, 0.5, 1],
+      "tempo": 82
+    },
+    {
+      "id": 13,
+      "name": "Seven Nation Army (The White Stripes)",
+      "notes": ["E4", "E4", "G4", "E4", "D4", "C4", "B3"],
+      "durations": [0.5, 1, 0.5, 0.5, 0.5, 1, 1],
+      "tempo": 120
+    },
+    {
+      "id": 14,
+      "name": "Smoke on the Water (Deep Purple)",
+      "notes": ["G3", "A#3", "C4", "G3", "A#3", "C#4", "C4", "G3", "A#3", "C4", "A#3", "G3"],
+      "durations": [0.5, 0.5, 1, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1, 1, 1],
+      "tempo": 112
+    },
+    {
+      "id": 15,
+      "name": "James Bond Theme",
+      "notes": ["E4", "F#4", "F#4", "F#4", "E4", "E4", "E4", "D#4", "D#4", "E4"],
+      "durations": [0.5, 0.25, 0.25, 0.25, 0.5, 0.25, 0.25, 0.25, 0.25, 1],
+      "tempo": 138
+    },
+    {
+      "id": 16,
+      "name": "Mission Impossible Theme",
+      "notes": ["G4", "A#4", "G4", "A#4", "G4", "A#4", "G4", "A#4", "C5", "A#4", "G4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, 0.5, 1],
+      "tempo": 160
+    },
+    {
+      "id": 17,
+      "name": "Tetris Theme (Korobeiniki)",
+      "notes": ["E5", "B4", "C5", "D5", "C5", "B4", "A4", "A4", "C5", "E5", "D5", "C5", "B4"],
+      "durations": [0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.5],
+      "tempo": 144
+    },
+    {
+      "id": 18,
+      "name": "Canon in D (Pachelbel)",
+      "notes": ["D4", "A3", "B3", "F#3", "G3", "D3", "G3", "A3"],
+      "durations": [1, 1, 1, 1, 1, 1, 1, 1],
+      "tempo": 80
+    },
+    {
+      "id": 19,
+      "name": "Eine Kleine Nachtmusik (Mozart)",
+      "notes": ["G4", "D5", "G4", "D5", "G4", "D5", "G4", "B4", "D5"],
+      "durations": [0.25, 0.5, 0.25, 0.5, 0.25, 0.25, 0.25, 0.25, 0.75],
+      "tempo": 132
+    },
+    {
+      "id": 20,
+      "name": "The Entertainer (Scott Joplin)",
+      "notes": ["D4", "D#4", "E4", "C5", "E4", "C5", "E4", "C5"],
+      "durations": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5],
+      "tempo": 180
+    },
+    {
+      "id": 21,
+      "name": "When the Saints Go Marching In",
+      "notes": ["C4", "E4", "F4", "G4", "C4", "E4", "F4", "G4", "C4", "E4", "F4", "G4", "E4", "C4", "D4"],
+      "durations": [0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 120
+    },
+    {
+      "id": 22,
+      "name": "Amazing Grace",
+      "notes": ["G4", "C5", "E5", "C5", "E5", "D5", "C5", "A4", "G4", "C5", "A4", "G4"],
+      "durations": [0.5, 1, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1, 0.5, 0.5, 1],
+      "tempo": 90
+    },
+    {
+      "id": 23,
+      "name": "Auld Lang Syne",
+      "notes": ["G4", "C5", "C5", "C5", "E5", "D5", "C5", "D5", "E5", "C5"],
+      "durations": [0.5, 0.75, 0.25, 0.5, 0.5, 0.75, 0.25, 0.75, 0.25, 1],
+      "tempo": 100
+    },
+    {
+      "id": 24,
+      "name": "Mary Had a Little Lamb",
+      "notes": ["E4", "D4", "C4", "D4", "E4", "E4", "E4", "D4", "D4", "D4", "E4", "G4", "G4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1, 0.5, 0.5, 1],
+      "tempo": 120
+    },
+    {
+      "id": 25,
+      "name": "Old MacDonald Had a Farm",
+      "notes": ["C4", "C4", "C4", "G3", "A3", "A3", "G3", "E4", "E4", "D4", "D4", "C4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 140
+    },
+    {
+      "id": 26,
+      "name": "Row Row Row Your Boat",
+      "notes": ["C4", "C4", "C4", "D4", "E4", "E4", "D4", "E4", "F4", "G4"],
+      "durations": [0.5, 0.5, 0.25, 0.25, 0.5, 0.25, 0.25, 0.25, 0.25, 1],
+      "tempo": 120
+    },
+    {
+      "id": 27,
+      "name": "Silent Night",
+      "notes": ["G4", "A4", "G4", "E4", "G4", "A4", "G4", "E4"],
+      "durations": [0.75, 0.25, 0.5, 1.5, 0.75, 0.25, 0.5, 1.5],
+      "tempo": 90
+    },
+    {
+      "id": 28,
+      "name": "We Wish You a Merry Christmas",
+      "notes": ["C4", "F4", "F4", "G4", "F4", "E4", "D4", "D4", "D4", "G4", "G4", "A4", "G4", "F4", "E4"],
+      "durations": [0.5, 0.5, 0.25, 0.25, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.25, 0.25, 0.5],
+      "tempo": 140
+    },
+    {
+      "id": 29,
+      "name": "Deck the Halls",
+      "notes": ["G4", "F4", "E4", "D4", "C4", "D4", "E4", "C4", "D4", "E4", "F4", "D4", "E4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.25, 0.25, 0.5, 1],
+      "tempo": 120
+    },
+    {
+      "id": 30,
+      "name": "Rudolph the Red-Nosed Reindeer",
+      "notes": ["G3", "A3", "G3", "E3", "C4", "A3", "G3"],
+      "durations": [0.5, 0.5, 0.5, 1, 0.5, 0.5, 1],
+      "tempo": 140
+    },
+    {
+      "id": 31,
+      "name": "Wedding March (Mendelssohn)",
+      "notes": ["C5", "C5", "C5", "F5", "A5", "G5", "F5", "E5"],
+      "durations": [0.5, 0.5, 1, 1.5, 0.5, 0.5, 0.5, 2],
+      "tempo": 120
+    },
+    {
+      "id": 32,
+      "name": "Take Me Out to the Ball Game",
+      "notes": ["C4", "C4", "C4", "A4", "G4", "E4", "G4"],
+      "durations": [0.5, 0.25, 0.25, 0.5, 0.5, 0.5, 1],
+      "tempo": 140
+    },
+    {
+      "id": 33,
+      "name": "The Simpsons Theme",
+      "notes": ["C5", "E5", "F#5", "A5", "G5", "E5", "C5", "E5", "G5"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 160
+    },
+    {
+      "id": 34,
+      "name": "Game of Thrones Theme",
+      "notes": ["G4", "C4", "D#4", "F4", "G4", "C4", "D#4", "F4"],
+      "durations": [0.5, 0.5, 0.25, 0.25, 0.5, 0.5, 0.25, 0.25],
+      "tempo": 170
+    },
+    {
+      "id": 35,
+      "name": "Harry Potter Theme (Hedwig's Theme)",
+      "notes": ["B4", "E5", "G5", "F#5", "E5", "B5", "A5", "F#5"],
+      "durations": [0.5, 1, 0.5, 1, 0.5, 1, 1, 1],
+      "tempo": 120
+    },
+    {
+      "id": 36,
+      "name": "Pirates of the Caribbean Theme",
+      "notes": ["D4", "D4", "D4", "D4", "D4", "D4", "D4", "D4", "E4", "F4"],
+      "durations": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.5, 0.25, 0.25, 0.5],
+      "tempo": 150
+    },
+    {
+      "id": 37,
+      "name": "The Addams Family Theme",
+      "notes": ["C4", "C4", "G3", "A3", "C4", "C4", "G3", "A3"],
+      "durations": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25],
+      "tempo": 120
+    },
+    {
+      "id": 38,
+      "name": "Indiana Jones Theme",
+      "notes": ["E4", "F4", "G4", "C5", "D4", "E4", "F4"],
+      "durations": [0.25, 0.25, 0.25, 1, 0.5, 0.25, 1],
+      "tempo": 120
+    },
+    {
+      "id": 39,
+      "name": "Back in Black (AC/DC)",
+      "notes": ["E4", "D4", "E4", "G4", "E4", "D4", "C4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 93
+    },
+    {
+      "id": 40,
+      "name": "Sweet Child O' Mine (Guns N' Roses)",
+      "notes": ["D4", "D5", "A4", "G4", "G5", "A4", "F#5", "A4"],
+      "durations": [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25],
+      "tempo": 122
+    },
+    {
+      "id": 41,
+      "name": "Smoke Gets in Your Eyes",
+      "notes": ["E4", "F#4", "G#4", "A4", "B4", "C#5", "B4", "A4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 72
+    },
+    {
+      "id": 42,
+      "name": "La Cucaracha",
+      "notes": ["C4", "C4", "C4", "F4", "A4", "C4", "C4", "C4", "F4", "A4"],
+      "durations": [0.5, 0.5, 0.5, 1, 1, 0.5, 0.5, 0.5, 1, 1],
+      "tempo": 140
+    },
+    {
+      "id": 43,
+      "name": "Yankee Doodle",
+      "notes": ["C4", "C4", "D4", "E4", "C4", "E4", "D4", "G3", "C4", "C4", "D4", "E4", "C4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 120
+    },
+    {
+      "id": 44,
+      "name": "Greensleeves",
+      "notes": ["A4", "C5", "D5", "E5", "F5", "E5", "D5", "B4", "G4", "E4"],
+      "durations": [0.5, 0.5, 0.5, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 90
+    },
+    {
+      "id": 45,
+      "name": "Camptown Races",
+      "notes": ["G4", "E4", "E4", "G4", "E4", "C4", "E4", "G4", "E4", "E4", "D4", "E4", "D4", "C4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 140
+    },
+    {
+      "id": 46,
+      "name": "Oh! Susanna",
+      "notes": ["C4", "D4", "E4", "G4", "G4", "A4", "G4", "E4", "C4", "D4", "E4", "D4", "C4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 120
+    },
+    {
+      "id": 47,
+      "name": "She'll Be Coming 'Round the Mountain",
+      "notes": ["G4", "G4", "G4", "E4", "G4", "A4", "G4", "E4", "D4", "C4"],
+      "durations": [0.5, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 140
+    },
+    {
+      "id": 48,
+      "name": "Frère Jacques",
+      "notes": ["C4", "D4", "E4", "C4", "C4", "D4", "E4", "C4", "E4", "F4", "G4", "E4", "F4", "G4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1],
+      "tempo": 120
+    },
+    {
+      "id": 49,
+      "name": "London Bridge is Falling Down",
+      "notes": ["G4", "A4", "G4", "F4", "E4", "F4", "G4", "D4", "E4", "F4", "E4", "F4", "G4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 0.5, 0.5, 1, 0.5, 0.5, 1],
+      "tempo": 120
+    },
+    {
+      "id": 50,
+      "name": "This Old Man",
+      "notes": ["C4", "E4", "G4", "G4", "A4", "G4", "F4", "E4", "D4", "C4"],
+      "durations": [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1],
+      "tempo": 120
+    }
+  ]
+}
+
