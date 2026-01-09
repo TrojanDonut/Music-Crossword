@@ -11,6 +11,11 @@ echo "🐳 Stopping and removing existing containers..."
 docker-compose down -v || true
 
 echo "🔍 Checking for processes using port $PORT..."
+# Force remove container by name if it exists (in case it wasn't managed by docker-compose)
+if docker ps -a --format '{{.Names}}' | grep -q "^music-crossword-ui$"; then
+    echo "🗑️  Removing existing container 'music-crossword-ui'..."
+    docker rm -f music-crossword-ui || true
+fi
 # Check if port is in use
 if command -v lsof >/dev/null 2>&1; then
     PORT_PID=$(lsof -ti:$PORT 2>/dev/null || true)

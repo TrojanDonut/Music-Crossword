@@ -6,6 +6,7 @@ Reads schema.sql and creates the database with all tables and indexes.
 
 import sqlite3
 import sys
+import shutil
 from pathlib import Path
 
 DB_PATH = Path(__file__).parent.parent / "music_crossword.db"
@@ -19,7 +20,11 @@ def init_database():
         if response != 'y':
             print("Aborted.")
             sys.exit(0)
-        DB_PATH.unlink()
+        # Remove file or directory
+        if DB_PATH.is_dir():
+            shutil.rmtree(DB_PATH)
+        else:
+            DB_PATH.unlink()
     
     # Read schema
     if not SCHEMA_PATH.exists():
